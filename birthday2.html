@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Brother ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;
+ font-family:'Segoe UI',sans-serif;color:white;
+ background:radial-gradient(circle at top,#57204f,#21102f 55%,#090915);
+ display:flex;justify-content:center;align-items:center;
+ overflow-x:hidden;
+}
+.page{
+ display:none;width:min(92%,520px);min-height:75vh;
+ padding:32px 22px;text-align:center;
+ flex-direction:column;justify-content:center;align-items:center;
+ animation:enter .65s ease;
+}
+.page.active{display:flex}
+@keyframes enter{
+ from{opacity:0;transform:translateY(22px)}
+ to{opacity:1;transform:translateY(0)}
+}
+h1{font-size:clamp(30px,7vw,48px);color:#ffbadb;margin:15px 0}
+h2{color:#ffd4e8;font-size:27px}
+p{font-size:17px;line-height:1.8;color:#ffe8f3}
+.emoji{font-size:90px;animation:bounce 1.6s infinite}
+@keyframes bounce{50%{transform:translateY(-12px) rotate(3deg)}}
+button{
+ padding:14px 23px;margin:8px;border:0;border-radius:40px;
+ background:linear-gradient(100deg,#ff80b8,#ffd080);
+ color:#401333;font-size:16px;font-weight:700;
+ cursor:pointer;box-shadow:0 5px 24px #ff6cac45;
+ transition:.2s;
+}
+button:hover{transform:scale(1.05)}
+.secondary{background:#ffffff15;color:white;border:1px solid #ffadd4}
+.letter{
+ background:#ffffff10;border:1px solid #ffb7d455;
+ border-radius:22px;padding:22px;line-height:1.9;
+}
+.progress{position:fixed;top:15px;left:0;width:100%;
+ text-align:center;font-size:12px;letter-spacing:3px;color:#ffd0e8}
+.heart{position:fixed;bottom:-30px;pointer-events:none;
+ animation:float 5s linear forwards;z-index:-1}
+@keyframes float{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+.candles{font-size:55px;cursor:pointer}
+.small{font-size:12px;color:#d5b6d5}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress">A LITTLE SURPRISE • 1 / 5</div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+ <div style="font-size:45px">✨ 🎁 ✨</div>
+ <p>A SPECIAL GIFT FOR SOMEONE SPECIAL</p>
+ <h1>Hey, Mere Bhai! ❤️</h1>
+ <p>Tumhare liye kuch special hai...</p>
+ <div class="emoji">🎁</div>
+ <p>Ready ho ek chhote se surprise ke liye?</p>
+ <button onclick="go(2)">Open Your Gift 💝 →</button>
+ <p class="small">Made with love, just for you</p>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+ <div class="emoji">😎</div>
+ <h1>Ek Chhota Sa Sawaal!</h1>
+ <p>Kya tum duniya ke sabse best bhai ho?</p>
+ <button onclick="answer()">Haan, bilkul! 😎</button>
+ <button class="secondary" onclick="answer()">Of course, no doubt! 😂</button>
+ <p id="reply" style="display:none">Mujhe pata tha! 😂❤️</p>
+ <button id="next2" style="display:none" onclick="go(3)">Chalo aage chalein →</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+ <p>THE MOMENT WE'VE BEEN WAITING FOR</p>
+ <h1>Happy Birthday! 🎉</h1>
+ <div class="emoji">🎂</div>
+ <h2>Make a Wish, Bhai! ✨</h2>
+ <p>Apni aankhein band karo, ek wish maango aur candles par click karo! 🕯️</p>
+ <div class="candles" onclick="blow()">🕯️ 🕯️ 🕯️</div>
+ <p id="wish">Your wishes deserve to come true. ❤️</p>
+ <button onclick="go(4)">Mera Message Padho 💌 →</button>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="p4">
+ <div style="font-size:65px">💌</div>
+ <h1>Dil Se, Mere Bhai</h1>
+ <div class="letter">
+  Mere pyare bhai ❤️<br><br>
+  Shayad main har baar keh nahi pata, lekin tu mere liye bahut special hai.
+  Tere saath ki nok-jhok, hasi-mazaak aur har chhoti-badi yaad mere liye anmol hai.<br><br>
+  Meri dua hai ki teri zindagi khushiyon se bhari rahe, tere saare sapne poore hon aur tu hamesha muskurata rahe.<br><br>
+  Zindagi mein kuch bhi ho jaaye, yaad rakhna tera bhai tere saath hai. 🫂❤️
+ </div>
+ <p>Tu hamesha khush rahe, bas yahi dua hai! 🤲</p>
+ <button onclick="go(5)">Last Surprise Dekho 🥹 →</button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="p5">
+ <div style="font-size:70px">🎉🎁❤️</div>
+ <h1>Love You, Bhai!</h1>
+ <div class="emoji">🫂</div>
+ <h2>Happy Birthday Once Again!</h2>
+ <p>
+  Tu sirf mera bhai nahi,<br>
+  meri life ka ek precious gift hai. ❤️
+ </p>
+ <p>May your life be filled with love, success and endless happiness! ✨</p>
+ <h2>Forever Brothers! ♾️</h2>
+ <button onclick="celebrate()">Celebrate Again! 🎊</button>
+ <button class="secondary" onclick="go(1)">Surprise Dobara Dekho ↻</button>
+ <p class="small">Made with ❤️ by your sibling</p>
+</section>
+
+<script>
+let current=1;
+function go(n){
+ document.getElementById('p'+current).classList.remove('active');
+ current=n;
+ document.getElementById('p'+current).classList.add('active');
+ document.getElementById('progress').textContent=
+ 'A LITTLE SURPRISE • '+current+' / 5';
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(n===5) celebrate();
+}
+function answer(){
+ document.getElementById('reply').style.display='block';
+ document.getElementById('next2').style.display='inline-block';
+}
+let blown=false;
+function blow(){
+ if(blown)return;
+ blown=true;
+ document.querySelector('.candles').textContent='💨 🎂 💨';
+ document.getElementById('wish').textContent=
+ 'Wish accepted! ✨ Bhagwan kare tumhari har wish poori ho! ❤️';
+ hearts(20);
+}
+function hearts(count){
+ for(let i=0;i<count;i++){
+  setTimeout(()=>{
+   let h=document.createElement('div');
+   h.className='heart';
+   h.textContent=['❤️','💕','✨','🎉','💖'][Math.floor(Math.random()*5)];
+   h.style.left=Math.random()*100+'vw';
+   h.style.fontSize=(18+Math.random()*24)+'px';
+   h.style.animationDuration=(3+Math.random()*4)+'s';
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),7500);
+  },i*100);
+ }
+}
+function celebrate(){hearts(35)}
+setInterval(()=>{if(Math.random()>.5)hearts(1)},1800);
+</script>
+</body>
+</html>
